@@ -13,11 +13,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.Modifier
 
 @Composable
-fun BluetoothDeviceCard() {
+fun BluetoothDeviceCard(name: String) {
 
     Surface(modifier = Modifier.fillMaxWidth()) {
         Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.padding(16.dp)) {
-            Text(text = "Dispositivo bluetooth", style = MaterialTheme.typography.body1)
+            Text(text = name, style = MaterialTheme.typography.body1)
         }
     }
 
@@ -28,7 +28,8 @@ fun BluetoothDeviceCard() {
 )
 @Composable
 fun BluetoothDeviceCardPreview() {
+    val name="d1"
     BluetoothApp {
-        BluetoothDeviceCard()
+        BluetoothDeviceCard(name = name)
     }
 }
