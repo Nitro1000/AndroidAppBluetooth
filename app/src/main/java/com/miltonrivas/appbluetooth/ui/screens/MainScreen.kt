@@ -19,7 +19,7 @@ fun MainScreen() {
         content = { padding ->
             Surface(color = MaterialTheme.colors.background) {
                 Column(modifier = Modifier.padding(padding)) {
-                    CustomButton(label = "adsfg") {}
+                    CustomButton(label = "Mostrar dispositivos vinculados") {}
                 }
             }
         }
