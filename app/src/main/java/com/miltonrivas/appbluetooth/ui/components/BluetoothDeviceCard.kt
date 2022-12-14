@@ -1,5 +1,6 @@
 package com.miltonrivas.appbluetooth.ui.components
 
+import android.bluetooth.BluetoothDevice
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Card
@@ -13,11 +14,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.Modifier
 
 @Composable
-fun BluetoothDeviceCard(name: String) {
+fun BluetoothDeviceCard(device: BluetoothDevice) {
 
     Surface(modifier = Modifier.fillMaxWidth()) {
         Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.padding(16.dp)) {
-            Text(text = name, style = MaterialTheme.typography.body1)
+            Text(text = device.name, style = MaterialTheme.typography.body1)
+            Text(text = device.address, style = MaterialTheme.typography.body1)
         }
     }
 
@@ -30,6 +32,6 @@ fun BluetoothDeviceCard(name: String) {
 fun BluetoothDeviceCardPreview() {
     val name="d1"
     BluetoothApp {
-        BluetoothDeviceCard(name = name)
+//        BluetoothDeviceCard(name = name)
     }
 }

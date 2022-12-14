@@ -1,6 +1,7 @@
 package com.miltonrivas.appbluetooth
 
 import android.bluetooth.BluetoothAdapter
+import android.bluetooth.BluetoothDevice
 import android.content.Intent
 import androidx.core.app.ActivityCompat.startActivityForResult
 import java.util.*
@@ -30,6 +31,11 @@ class BluetoothObject {
             val enableBtIntent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
 //            startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT)
         }
+    }
+
+    fun listPairedDevice(): List<BluetoothDevice>? {
+        return (bluetoothAdapter?.bondedDevices)?.toList() ?: null
+
     }
 
 }
