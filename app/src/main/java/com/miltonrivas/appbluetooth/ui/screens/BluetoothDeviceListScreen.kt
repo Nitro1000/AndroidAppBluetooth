@@ -7,9 +7,12 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.miltonrivas.appbluetooth.BluetoothObject
 import com.miltonrivas.appbluetooth.ui.components.BluetoothApp
 import com.miltonrivas.appbluetooth.ui.components.BluetoothDeviceCard
@@ -17,14 +20,17 @@ import com.miltonrivas.appbluetooth.ui.components.CustomAppBar
 
 
 @Composable
-fun BluetoothDeviceList() {
-    val pairedDevices: Set<String> = setOf("d1","d2","d3")
+fun BluetoothDeviceListScreen(navController: NavController) {
     val bluetoothObject = BluetoothObject()
     var list = bluetoothObject.listPairedDevice()
     BluetoothApp {
         Scaffold(
             topBar = {
-                CustomAppBar()
+                CustomAppBar(navigationIcon = Icons.Filled.ArrowBack){
+                    navController.navigate(route = "home"){
+                        popUpTo(route = "home")
+                    }
+                }
             },
             content = {
                 Surface(color=MaterialTheme.colors.background){
@@ -49,8 +55,8 @@ fun BluetoothDeviceList() {
     showBackground = true
 )
 @Composable
-fun BluetoothDeviceListPreview() {
+fun BluetoothDeviceListScreenPreview() {
     BluetoothApp {
-        BluetoothDeviceList()
+//        BluetoothDeviceListScreen()
     }
 }
