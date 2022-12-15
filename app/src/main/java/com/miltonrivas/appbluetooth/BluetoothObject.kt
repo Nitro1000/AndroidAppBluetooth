@@ -3,16 +3,13 @@ package com.miltonrivas.appbluetooth
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
 import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat.startActivityForResult
 import java.util.*
 
 class BluetoothObject {
     val REQUEST_ENABLE_BT:Int = 10;
-    val STATE_LISTENING = 1
-    val STATE_CONNECTING = 2
-    val STATE_CONNECTED = 3
-    val STATE_CONNECTION_FAILED = 4
-    val STATE_MESSAGE_RECEIVED = 5
+
 
     /*val bluetoothManager: BluetoothManager = getSystemService(BluetoothManager::class.java)
     val bluetoothAdapter: BluetoothAdapter? = bluetoothManager.getAdapter()*/
@@ -26,16 +23,24 @@ class BluetoothObject {
         return true
     }
 
-    fun isBluetoothEnabled(): Unit {
+    fun isEnabled(): Unit {
         if (bluetoothAdapter?.isEnabled == false) {
             val enableBtIntent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
 //            startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT)
         }
     }
 
-    fun listPairedDevice(): List<BluetoothDevice>? {
-        return (bluetoothAdapter?.bondedDevices)?.toList() ?: null
+    fun listPairedDevice(): List<BluetoothDevice> {
+        return (bluetoothAdapter?.bondedDevices).orEmpty().toList()//.toList().orEmpty()
 
+    }
+
+    fun EnableDiscoverability(): Unit {
+        val requestCode = 1;
+        val discoverableIntent: Intent = Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE).apply {
+            putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 300)
+        }
+//        startActivityForResult(discoverableIntent, requestCode)
     }
 
 }

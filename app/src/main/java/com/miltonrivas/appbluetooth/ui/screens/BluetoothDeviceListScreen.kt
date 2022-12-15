@@ -35,15 +35,11 @@ fun BluetoothDeviceListScreen(navController: NavController) {
             content = {
                 Surface(color=MaterialTheme.colors.background){
                     LazyColumn(verticalArrangement = Arrangement.spacedBy(8.dp)){
-                        if (list == null) {
-                            item {
-                                Text(text = "No hay dispositivos vinculados")
-                            }
-                        }else {
-                            items(list) { device ->
-                                BluetoothDeviceCard(device = device)
-                            }
+
+                        items(list) { device ->
+                            BluetoothDeviceCard(device = device)
                         }
+
                     }
                 }
             }
